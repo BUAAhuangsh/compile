@@ -34,7 +34,7 @@ for i in n:
             while k<len(j):
                 num=""
                 ident=''
-                if j[k]=='=' and j[k+1]=='=':
+                if len(j)-k >=2 and j[k]=='=' and j[k+1]=='=':
                     print('Eq')
                     k+=2
                 elif j[k] in dict:
