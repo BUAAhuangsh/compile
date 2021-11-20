@@ -1,6 +1,6 @@
 [jobs.lexer]
 
-image = { source = "dockerfile", path = ".", tag = "pascal-lex-example" }
+image = { source = "dockerfile", path = "." }
 
 run = [
   "cat $input | python test.py ",
