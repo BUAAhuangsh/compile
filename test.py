@@ -234,6 +234,6 @@ def main():
     for line in sys.stdin:
         lines.append(line)
     for i in lines:
-        print(i)
+        print(i,end='')
 
 main()
