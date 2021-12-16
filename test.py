@@ -233,5 +233,5 @@ def main():
     lines=[]
     for line in sys.stdin:
         lines.append(line)
-    print(line)
+    print(lines)
 main()
