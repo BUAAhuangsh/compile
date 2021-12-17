@@ -1,4 +1,4 @@
-# import sys, re
+import sys, re
 # lex_analysis_result = []
 # analysis_stack = []
 # reserved_words_dict={'int':'define',
