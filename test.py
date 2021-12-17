@@ -106,4 +106,4 @@ import sys, re
 lines=[]
 for line in sys.stdin:
     lines.append(line)
-    print(lines)
+print(lines)
