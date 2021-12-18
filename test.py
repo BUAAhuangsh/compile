@@ -106,4 +106,17 @@ import sys, re
 lines=[]
 for line in sys.stdin:
     lines.append(line)
-print(lines)
+lines=['define dso_local i32 @main() {',
+    '%1 = sub i32 0, 1',
+    '%2 = sub i32 0, %1',
+    '%3 = sub i32 0, %2',
+    '%4 = sub i32 0, %3',
+    '%5 = sub i32 0, %4',
+    '%6 = sub i32 0, %5',
+    '%7 = sub i32 0, %6',
+    '%8 = sub i32 0, %7',
+    '%9 = add i32 1, %8',
+    'ret i32 %9',
+    '}']
+for line in lines:
+    print(line)
