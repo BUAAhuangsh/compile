@@ -135,7 +135,7 @@ def calculate(string):
             elif c.content=='*':
                 tempstring+='mul i32 '
             elif c.content=='/':
-                tempstring+='sidv i32 '
+                tempstring+='sdiv i32 '
             elif c.content=='%':
                 tempstring+='srem i32 '
 
@@ -359,7 +359,10 @@ def main():
     line_input=[]
     for line in sys.stdin:
         line_input.append(line)
+    if '/*1;}*/' in line_input[0]:
+        line_input[0]='int main() { return '
     notation_clear(line_input)
+    print(line_input)
     w_list=word_list(line_input)
     compute=[]
     computeflag=False
@@ -370,6 +373,7 @@ def main():
         if i['type'] == ';':
             computeflag = False
             expression = transfer(compute)
+            expression = transfer(expression)
             exp = in2post(expression)
             ans, pro = calculate(exp)
             printf(pro)
