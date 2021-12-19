@@ -356,9 +356,9 @@ def number_parsing(Num:str)->int:
         return int(Num)
 
 def main():
-    line_input=['int main() {\n', '    return +-+-010;\n', '}']
-    # for line in sys.stdin:
-    #     line_input.append(line)
+    line_input=[]
+    for line in sys.stdin:
+        line_input.append(line)
     notation_clear(line_input)
     w_list=word_list(line_input)
     compute=[]
@@ -379,7 +379,7 @@ def main():
         if i['type']=='return':
             computeflag=True
         if computeflag==False :
-            print(i['word'],end=' ')
+            print(reserved_words_dict[i['word']],end=' ')
 
 
 main()
