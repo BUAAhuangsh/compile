@@ -362,7 +362,6 @@ def main():
     if '/*1;}*/' in line_input[0]:
         line_input[0]='int main() { return '
     notation_clear(line_input)
-    print(line_input)
     w_list=word_list(line_input)
     compute=[]
     computeflag=False
