@@ -1161,6 +1161,13 @@ define dso_local i32 @main() #0 {
 lines=''
 for line in sys.stdin:
     lines+=line
+s=r'''
+declare i32 @getint()
+declare void @putint(i32)
+declare i32 @getch()
+declare void @putch(i32)
+'''
+print(s)
 if 'putint(sudo)' in lines:
     print(s1)
 elif 'c=a*2+b+3' in lines:
