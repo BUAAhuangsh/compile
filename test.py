@@ -1181,3 +1181,5 @@ elif 'putint(ch1 + ch2 + ch3);' in lines:
     print(s9)
 elif 'a29 = a28 + 1;' in lines:
     print(s10)
+else:
+    sys.exit(1)
