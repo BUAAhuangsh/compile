@@ -440,7 +440,7 @@ define dso_local i32 @main() #0 {
   %8 = add nsw i32 %6, %7
   %9 = add nsw i32 %8, 3
   store i32 %9, i32* %4, align 4
-  %10 = load i32, i32* %9, align 4
+  %10 = load i32, i32* %4, align 4
   call void @putint(i32 %10)
   ret i32 0
 }
