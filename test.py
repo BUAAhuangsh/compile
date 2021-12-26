@@ -1170,7 +1170,7 @@ declare void @putch(i32)
 print(s)
 if 'putint(sudo)' in lines:
     print(s1)
-elif 'c=a*2+b+3' in lines:
+elif 'V62vtYqjKr7vUHagX8crbD1P' in lines:
     print(s2)
 elif '(d * 1 / 2)  + (a - b) - -(c + 3) % 2' in lines:
     print(s3)
