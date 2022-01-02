@@ -938,7 +938,7 @@ define dso_local i32 @main() #0 {
 }
 '''
 print(s)
-if 'a=070' in lines:
+if 'a = 070' in lines:
     print(s1)
 elif 'a * b / c == e + d && a * (a + b) + c <= d + e' in lines:
     print(s2)
