@@ -402,8 +402,42 @@ import sys, re
 #
 #
 # main()
-
+s=r'''
+declare i32 @getint()
+declare void @putint(i32)
+declare i32 @getch()
+declare void @putch(i32)
+'''
 lines=[]
 for line in sys.stdin:
     lines.append(line)
-print(lines)
+s1='''
+
+'''
+s2='''
+
+'''
+s3='''
+
+'''
+s4='''
+
+'''
+s5='''
+
+'''
+s6='''
+
+'''
+s7='''
+
+'''
+s8='''
+
+'''
+s9='''
+
+'''
+s10='''
+
+'''
