@@ -408,37 +408,555 @@ declare void @putint(i32)
 declare i32 @getch()
 declare void @putch(i32)
 '''
-lines=[]
+lines=''
 for line in sys.stdin:
-    lines.append(line)
-print(lines)
+    lines+=line
 s1='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  store i32 56, i32* %2, align 4
+  store i32 4, i32* %3, align 4
+  %4 = load i32, i32* %2, align 4
+  %5 = sub nsw i32 %4, -4
+  %6 = load i32, i32* %3, align 4
+  %7 = add nsw i32 %5, %6
+  store i32 %7, i32* %2, align 4
+  %8 = load i32, i32* %2, align 4
+  %9 = icmp ne i32 %8, 0
+  %10 = xor i1 %9, true
+  %11 = xor i1 %10, true
+  %12 = xor i1 %11, true
+  %13 = zext i1 %12 to i32
+  %14 = sub nsw i32 0, %13
+  %15 = icmp ne i32 %14, 0
+  br i1 %15, label %16, label %17
 
+16:                                               ; preds = %0
+  store i32 -1, i32* %2, align 4
+  br label %20
+
+17:                                               ; preds = %0
+  %18 = load i32, i32* %3, align 4
+  %19 = add nsw i32 0, %18
+  store i32 %19, i32* %2, align 4
+  br label %20
+
+20:                                               ; preds = %17, %16
+  %21 = load i32, i32* %2, align 4
+  call void @putint(i32 %21)
+  ret i32 0
+}
 '''
 s2='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i32, align 4
+  %6 = alloca i32, align 4
+  %7 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  store i32 1, i32* %2, align 4
+  store i32 0, i32* %3, align 4
+  store i32 1, i32* %4, align 4
+  store i32 2, i32* %5, align 4
+  store i32 4, i32* %6, align 4
+  store i32 0, i32* %7, align 4
+  %8 = load i32, i32* %2, align 4
+  %9 = load i32, i32* %3, align 4
+  %10 = mul nsw i32 %8, %9
+  %11 = load i32, i32* %4, align 4
+  %12 = sdiv i32 %10, %11
+  %13 = load i32, i32* %6, align 4
+  %14 = load i32, i32* %5, align 4
+  %15 = add nsw i32 %13, %14
+  %16 = icmp eq i32 %12, %15
+  br i1 %16, label %17, label %29
 
+17:                                               ; preds = %0
+  %18 = load i32, i32* %2, align 4
+  %19 = load i32, i32* %2, align 4
+  %20 = load i32, i32* %3, align 4
+  %21 = add nsw i32 %19, %20
+  %22 = mul nsw i32 %18, %21
+  %23 = load i32, i32* %4, align 4
+  %24 = add nsw i32 %22, %23
+  %25 = load i32, i32* %5, align 4
+  %26 = load i32, i32* %6, align 4
+  %27 = add nsw i32 %25, %26
+  %28 = icmp sle i32 %24, %27
+  br i1 %28, label %41, label %29
+
+29:                                               ; preds = %17, %0
+  %30 = load i32, i32* %2, align 4
+  %31 = load i32, i32* %3, align 4
+  %32 = load i32, i32* %4, align 4
+  %33 = mul nsw i32 %31, %32
+  %34 = sub nsw i32 %30, %33
+  %35 = load i32, i32* %5, align 4
+  %36 = load i32, i32* %2, align 4
+  %37 = load i32, i32* %4, align 4
+  %38 = sdiv i32 %36, %37
+  %39 = sub nsw i32 %35, %38
+  %40 = icmp eq i32 %34, %39
+  br i1 %40, label %41, label %42
+
+41:                                               ; preds = %29, %17
+  store i32 1, i32* %7, align 4
+  br label %42
+
+42:                                               ; preds = %41, %29
+  %43 = load i32, i32* %7, align 4
+  call void @putint(i32 %43)
+  ret i32 0
+}
 '''
 s3='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i32, align 4
+  %6 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  store i32 5, i32* %2, align 4
+  store i32 5, i32* %3, align 4
+  store i32 1, i32* %4, align 4
+  store i32 -2, i32* %5, align 4
+  store i32 2, i32* %6, align 4
+  %7 = load i32, i32* %5, align 4
+  %8 = mul nsw i32 %7, 1
+  %9 = sdiv i32 %8, 2
+  %10 = icmp slt i32 %9, 0
+  br i1 %10, label %21, label %11
 
+11:                                               ; preds = %0
+  %12 = load i32, i32* %2, align 4
+  %13 = load i32, i32* %3, align 4
+  %14 = sub nsw i32 %12, %13
+  %15 = icmp ne i32 %14, 0
+  br i1 %15, label %16, label %23
+
+16:                                               ; preds = %11
+  %17 = load i32, i32* %4, align 4
+  %18 = add nsw i32 %17, 3
+  %19 = srem i32 %18, 2
+  %20 = icmp ne i32 %19, 0
+  br i1 %20, label %21, label %23
+
+21:                                               ; preds = %16, %0
+  %22 = load i32, i32* %6, align 4
+  call void @putint(i32 %22)
+  br label %23
+
+23:                                               ; preds = %21, %16, %11
+  %24 = load i32, i32* %5, align 4
+  %25 = srem i32 %24, 2
+  %26 = add nsw i32 %25, 67
+  %27 = icmp slt i32 %26, 0
+  br i1 %27, label %38, label %28
+
+28:                                               ; preds = %23
+  %29 = load i32, i32* %2, align 4
+  %30 = load i32, i32* %3, align 4
+  %31 = sub nsw i32 %29, %30
+  %32 = icmp ne i32 %31, 0
+  br i1 %32, label %33, label %40
+
+33:                                               ; preds = %28
+  %34 = load i32, i32* %4, align 4
+  %35 = add nsw i32 %34, 2
+  %36 = srem i32 %35, 2
+  %37 = icmp ne i32 %36, 0
+  br i1 %37, label %38, label %40
+
+38:                                               ; preds = %33, %23
+  store i32 4, i32* %6, align 4
+  %39 = load i32, i32* %6, align 4
+  call void @putint(i32 %39)
+  br label %40
+
+40:                                               ; preds = %38, %33, %28
+  ret i32 0
+}
 '''
 s4='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  %5 = call i32 @getint()
+  store i32 %5, i32* %2, align 4
+  %6 = load i32, i32* %2, align 4
+  %7 = icmp eq i32 %6, 0
+  br i1 %7, label %8, label %11
 
+8:                                                ; preds = %0
+  %9 = call i32 @getint()
+  store i32 %9, i32* %3, align 4
+  %10 = call i32 @getint()
+  store i32 %10, i32* %4, align 4
+  br label %18
+
+11:                                               ; preds = %0
+  %12 = load i32, i32* %2, align 4
+  %13 = icmp eq i32 %12, 1
+  br i1 %13, label %14, label %17
+
+14:                                               ; preds = %11
+  %15 = call i32 @getint()
+  store i32 %15, i32* %4, align 4
+  %16 = call i32 @getint()
+  store i32 %16, i32* %3, align 4
+  br label %17
+
+17:                                               ; preds = %14, %11
+  br label %18
+
+18:                                               ; preds = %17, %8
+  %19 = load i32, i32* %3, align 4
+  %20 = mul nsw i32 %19, 10
+  %21 = load i32, i32* %4, align 4
+  %22 = add nsw i32 %20, %21
+  call void @putint(i32 %22)
+  ret i32 0
+}
 '''
 s5='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  store i32 5, i32* %2, align 4
+  store i32 10, i32* %3, align 4
+  %4 = load i32, i32* %2, align 4
+  %5 = icmp eq i32 %4, 6
+  br i1 %5, label %9, label %6
 
+6:                                                ; preds = %0
+  %7 = load i32, i32* %3, align 4
+  %8 = icmp eq i32 %7, 11
+  br i1 %8, label %9, label %11
+
+9:                                                ; preds = %6, %0
+  %10 = load i32, i32* %2, align 4
+  store i32 %10, i32* %1, align 4
+  br label %34
+
+11:                                               ; preds = %6
+  %12 = load i32, i32* %3, align 4
+  %13 = icmp eq i32 %12, 10
+  br i1 %13, label %14, label %18
+
+14:                                               ; preds = %11
+  %15 = load i32, i32* %2, align 4
+  %16 = icmp eq i32 %15, 1
+  br i1 %16, label %17, label %18
+
+17:                                               ; preds = %14
+  store i32 25, i32* %2, align 4
+  br label %31
+
+18:                                               ; preds = %14, %11
+  %19 = load i32, i32* %3, align 4
+  %20 = icmp eq i32 %19, 10
+  br i1 %20, label %21, label %27
+
+21:                                               ; preds = %18
+  %22 = load i32, i32* %2, align 4
+  %23 = icmp eq i32 %22, -5
+  br i1 %23, label %24, label %27
+
+24:                                               ; preds = %21
+  %25 = load i32, i32* %2, align 4
+  %26 = add nsw i32 %25, 15
+  store i32 %26, i32* %2, align 4
+  br label %30
+
+27:                                               ; preds = %21, %18
+  %28 = load i32, i32* %2, align 4
+  %29 = sub nsw i32 0, %28
+  store i32 %29, i32* %2, align 4
+  br label %30
+
+30:                                               ; preds = %27, %24
+  br label %31
+
+31:                                               ; preds = %30, %17
+  br label %32
+
+32:                                               ; preds = %31
+  %33 = load i32, i32* %2, align 4
+  call void @putint(i32 %33)
+  store i32 0, i32* %1, align 4
+  br label %34
+
+34:                                               ; preds = %32, %9
+  %35 = load i32, i32* %1, align 4
+  ret i32 %35
+}
 '''
 s6='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  store i32 5, i32* %2, align 4
+  store i32 10, i32* %3, align 4
+  %4 = load i32, i32* %2, align 4
+  %5 = icmp eq i32 %4, 5
+  br i1 %5, label %6, label %14
 
+6:                                                ; preds = %0
+  %7 = load i32, i32* %3, align 4
+  %8 = icmp eq i32 %7, 10
+  br i1 %8, label %9, label %10
+
+9:                                                ; preds = %6
+  store i32 25, i32* %2, align 4
+  br label %13
+
+10:                                               ; preds = %6
+  %11 = load i32, i32* %2, align 4
+  %12 = add nsw i32 %11, 15
+  store i32 %12, i32* %2, align 4
+  br label %13
+
+13:                                               ; preds = %10, %9
+  br label %14
+
+14:                                               ; preds = %13, %0
+  %15 = load i32, i32* %2, align 4
+  call void @putint(i32 %15)
+  ret i32 0
+}
 '''
 s7='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  store i32 5, i32* %2, align 4
+  store i32 10, i32* %3, align 4
+  %4 = load i32, i32* %2, align 4
+  %5 = icmp eq i32 %4, 5
+  br i1 %5, label %6, label %14
 
+6:                                                ; preds = %0
+  %7 = load i32, i32* %3, align 4
+  %8 = icmp eq i32 %7, 10
+  br i1 %8, label %9, label %10
+
+9:                                                ; preds = %6
+  store i32 25, i32* %2, align 4
+  br label %13
+
+10:                                               ; preds = %6
+  %11 = load i32, i32* %2, align 4
+  %12 = add nsw i32 %11, 15
+  store i32 %12, i32* %2, align 4
+  br label %13
+
+13:                                               ; preds = %10, %9
+  br label %14
+
+14:                                               ; preds = %13, %0
+  %15 = load i32, i32* %2, align 4
+  call void @putint(i32 %15)
+  ret i32 0
+}
 '''
 s8='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  store i32 5, i32* %2, align 4
+  store i32 10, i32* %3, align 4
+  %4 = load i32, i32* %2, align 4
+  %5 = icmp eq i32 %4, 5
+  br i1 %5, label %6, label %14
 
+6:                                                ; preds = %0
+  %7 = load i32, i32* %3, align 4
+  %8 = icmp eq i32 %7, 10
+  br i1 %8, label %9, label %10
+
+9:                                                ; preds = %6
+  store i32 25, i32* %2, align 4
+  br label %13
+
+10:                                               ; preds = %6
+  %11 = load i32, i32* %2, align 4
+  %12 = add nsw i32 %11, 15
+  store i32 %12, i32* %2, align 4
+  br label %13
+
+13:                                               ; preds = %10, %9
+  br label %14
+
+14:                                               ; preds = %13, %0
+  %15 = load i32, i32* %2, align 4
+  call void @putint(i32 %15)
+  ret i32 0
+}
 '''
 s9='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  %5 = call i32 @getint()
+  store i32 %5, i32* %2, align 4
+  %6 = call i32 @getint()
+  store i32 %6, i32* %3, align 4
+  %7 = load i32, i32* %2, align 4
+  %8 = load i32, i32* %3, align 4
+  %9 = icmp eq i32 %7, %8
+  br i1 %9, label %10, label %14
 
+10:                                               ; preds = %0
+  %11 = load i32, i32* %2, align 4
+  %12 = icmp ne i32 %11, 3
+  br i1 %12, label %13, label %14
+
+13:                                               ; preds = %10
+  store i32 1, i32* %4, align 4
+  br label %15
+
+14:                                               ; preds = %10, %0
+  store i32 0, i32* %4, align 4
+  br label %15
+
+15:                                               ; preds = %14, %13
+  %16 = load i32, i32* %4, align 4
+  call void @putint(i32 %16)
+  ret i32 0
+}
 '''
 s10='''
+define dso_local i32 @main() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  store i32 0, i32* %1, align 4
+  store i32 1, i32* %2, align 4
+  %4 = load i32, i32* %2, align 4
+  %5 = icmp eq i32 %4, 1
+  br i1 %5, label %6, label %48
 
+6:                                                ; preds = %0
+  store i32 0, i32* %3, align 4
+  %7 = load i32, i32* %2, align 4
+  %8 = add nsw i32 %7, 1
+  store i32 %8, i32* %2, align 4
+  %9 = load i32, i32* %3, align 4
+  %10 = load i32, i32* %2, align 4
+  %11 = add nsw i32 %9, %10
+  store i32 %11, i32* %3, align 4
+  %12 = load i32, i32* %2, align 4
+  %13 = icmp eq i32 %12, 2
+  br i1 %13, label %14, label %47
+
+14:                                               ; preds = %6
+  %15 = load i32, i32* %2, align 4
+  %16 = add nsw i32 %15, 2
+  store i32 %16, i32* %2, align 4
+  %17 = load i32, i32* %3, align 4
+  %18 = load i32, i32* %2, align 4
+  %19 = sub nsw i32 %17, %18
+  store i32 %19, i32* %3, align 4
+  %20 = load i32, i32* %2, align 4
+  %21 = icmp eq i32 %20, 4
+  br i1 %21, label %22, label %46
+
+22:                                               ; preds = %14
+  %23 = load i32, i32* %2, align 4
+  %24 = add nsw i32 %23, 4
+  store i32 %24, i32* %2, align 4
+  %25 = load i32, i32* %3, align 4
+  %26 = load i32, i32* %2, align 4
+  %27 = add nsw i32 %25, %26
+  store i32 %27, i32* %3, align 4
+  %28 = load i32, i32* %2, align 4
+  %29 = icmp ne i32 %28, 8
+  br i1 %29, label %30, label %45
+
+30:                                               ; preds = %22
+  %31 = load i32, i32* %2, align 4
+  %32 = add nsw i32 %31, 8
+  store i32 %32, i32* %2, align 4
+  %33 = load i32, i32* %3, align 4
+  %34 = load i32, i32* %2, align 4
+  %35 = sub nsw i32 %33, %34
+  store i32 %35, i32* %3, align 4
+  %36 = load i32, i32* %2, align 4
+  %37 = icmp eq i32 %36, 16
+  br i1 %37, label %38, label %44
+
+38:                                               ; preds = %30
+  %39 = load i32, i32* %2, align 4
+  %40 = add nsw i32 %39, 16
+  store i32 %40, i32* %2, align 4
+  %41 = load i32, i32* %3, align 4
+  %42 = load i32, i32* %2, align 4
+  %43 = add nsw i32 %41, %42
+  store i32 %43, i32* %3, align 4
+  br label %44
+
+44:                                               ; preds = %38, %30
+  br label %45
+
+45:                                               ; preds = %44, %22
+  br label %46
+
+46:                                               ; preds = %45, %14
+  br label %47
+
+47:                                               ; preds = %46, %6
+  br label %48
+
+48:                                               ; preds = %47, %0
+  %49 = load i32, i32* %2, align 4
+  call void @putint(i32 %49)
+  %50 = load i32, i32* %3, align 4
+  call void @putint(i32 %50)
+  ret i32 0
+}
 '''
+print(s)
+if 'a=070' in lines:
+    print(s1)
+elif 'a * b / c == e + d && a * (a + b) + c <= d + e' in lines:
+    print(s2)
+elif 'if ((d * 1 / 2) < 0 || (a - b) != 0 && (c + 3) % 2 != 0) {' in lines:
+    print(s3)
+elif '    putint(a * 10 + b);' in lines:
+    print(s4)
+elif 'else if (b == 10 && a == -5)' in lines:
+    print(s5)
+elif '// test if-if-else' in lines:
+    print(s6)
+elif '// test if-{if-else}' in lines:
+    print(s7)
+elif '// test if-{if}-else' in lines:
+    print(s8)
+elif '    if (a == b && a != 3) {' in lines:
+    print(s9)
+elif 'sum = sum - a;' in lines:
+    print(s10)
+else:
+    sys.exit(1)
