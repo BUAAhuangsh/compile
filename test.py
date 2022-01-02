@@ -411,6 +411,7 @@ declare void @putch(i32)
 lines=[]
 for line in sys.stdin:
     lines.append(line)
+print(lines)
 s1='''
 
 '''
