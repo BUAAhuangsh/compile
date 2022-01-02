@@ -403,7 +403,7 @@ import sys, re
 #
 # main()
 
-lines=''
+lines=[]
 for line in sys.stdin:
-    lines+=line
+    lines.append(line)
 print(lines)
