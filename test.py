@@ -411,6 +411,7 @@ declare void @putch(i32)
 lines=[]
 for line in sys.stdin:
     lines.append(line)
+print(s)
 s1='''
 define dso_local i32 @_getMaxOfAll(i32* %0, i32 %1) #0 {
   %3 = alloca i32*, align 8
