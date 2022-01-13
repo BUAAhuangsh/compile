@@ -412,74 +412,12 @@ lines=[]
 for line in sys.stdin:
     lines.append(line)
 s1='''
-@a = dso_local global [4 x [2 x i32]] zeroinitializer, align 16
-@b = dso_local constant [8 x i32] [i32 9, i32 2, i32 3, i32 4, i32 1, i32 5, i32 4, i32 0], align 16
-@c = dso_local global [4 x [2 x i32]] [[2 x i32] [i32 1, i32 2], [2 x i32] [i32 3, i32 4], [2 x i32] [i32 6, i32 3], [2 x i32] [i32 7, i32 8]], align 16
-@e = dso_local global [4 x [2 x i32]] [[2 x i32] [i32 6, i32 7], [2 x i32] [i32 4, i32 5], [2 x i32] [i32 5, i32 6], [2 x i32] [i32 9, i32 10]], align 16
-@__const.main.b = private unnamed_addr constant [8 x i32] [i32 1, i32 2, i32 3, i32 4, i32 5, i32 6, i32 7, i32 8], align 16
-@__const.main.c = private unnamed_addr constant [4 x [2 x i32]] [[2 x i32] [i32 1, i32 2], [2 x i32] [i32 3, i32 4], [2 x i32] [i32 5, i32 6], [2 x i32] [i32 7, i32 8]], align 16
 define dso_local i32 @main() #0 {
   %1 = alloca i32, align 4
-  %2 = alloca [4 x [2 x i32]], align 16
-  %3 = alloca [8 x i32], align 16
-  %4 = alloca [4 x [2 x i32]], align 16
-  %5 = alloca [4 x [2 x i32]], align 16
   store i32 0, i32* %1, align 4
-  %6 = load i32, i32* getelementptr inbounds ([4 x [2 x i32]], [4 x [2 x i32]]* @e, i64 0, i64 2, i64 1), align 4
-  %7 = load i32, i32* getelementptr inbounds ([4 x [2 x i32]], [4 x [2 x i32]]* @e, i64 0, i64 0, i64 1), align 4
-  %8 = add nsw i32 %6, %7
-  %9 = load i32, i32* getelementptr inbounds ([4 x [2 x i32]], [4 x [2 x i32]]* @e, i64 0, i64 0, i64 0), align 16
-  %10 = sub nsw i32 %8, %9
-  %11 = load i32, i32* getelementptr inbounds ([4 x [2 x i32]], [4 x [2 x i32]]* @a, i64 0, i64 2, i64 0), align 16
-  %12 = add nsw i32 %10, %11
-  call void @putint(i32 %12)
-  %13 = bitcast [4 x [2 x i32]]* %2 to i8*
-  call void @llvm.memset.p0i8.i64(i8* align 16 %13, i8 0, i64 32, i1 false)
-  %14 = bitcast [8 x i32]* %3 to i8*
-  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 16 %14, i8* align 16 bitcast ([8 x i32]* @__const.main.b to i8*), i64 32, i1 false)
-  %15 = bitcast [4 x [2 x i32]]* %4 to i8*
-  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 16 %15, i8* align 16 bitcast ([4 x [2 x i32]]* @__const.main.c to i8*), i64 32, i1 false)
+  call void @putint(i32 6)
   call void @putch(i32 10)
-  %16 = getelementptr inbounds [4 x [2 x i32]], [4 x [2 x i32]]* %5, i64 0, i64 0
-  %17 = getelementptr inbounds [2 x i32], [2 x i32]* %16, i64 0, i64 0
-  %18 = getelementptr inbounds [8 x i32], [8 x i32]* %3, i64 0, i64 6
-  %19 = load i32, i32* %18, align 8
-  store i32 %19, i32* %17, align 4
-  %20 = getelementptr inbounds i32, i32* %17, i64 1
-  %21 = getelementptr inbounds [8 x i32], [8 x i32]* %3, i64 0, i64 7
-  %22 = load i32, i32* %21, align 4
-  store i32 %22, i32* %20, align 4
-  %23 = getelementptr inbounds [2 x i32], [2 x i32]* %16, i64 1
-  %24 = getelementptr inbounds [2 x i32], [2 x i32]* %23, i64 0, i64 0
-  store i32 3, i32* %24, align 4
-  %25 = getelementptr inbounds i32, i32* %24, i64 1
-  store i32 4, i32* %25, align 4
-  %26 = getelementptr inbounds [2 x i32], [2 x i32]* %23, i64 1
-  %27 = getelementptr inbounds [2 x i32], [2 x i32]* %26, i64 0, i64 0
-  store i32 5, i32* %27, align 4
-  %28 = getelementptr inbounds i32, i32* %27, i64 1
-  store i32 6, i32* %28, align 4
-  %29 = getelementptr inbounds [2 x i32], [2 x i32]* %26, i64 1
-  %30 = getelementptr inbounds [2 x i32], [2 x i32]* %29, i64 0, i64 0
-  store i32 7, i32* %30, align 4
-  %31 = getelementptr inbounds i32, i32* %30, i64 1
-  store i32 8, i32* %31, align 4
-  %32 = getelementptr inbounds [4 x [2 x i32]], [4 x [2 x i32]]* %5, i64 0, i64 3
-  %33 = getelementptr inbounds [2 x i32], [2 x i32]* %32, i64 0, i64 1
-  %34 = load i32, i32* %33, align 4
-  %35 = getelementptr inbounds [4 x [2 x i32]], [4 x [2 x i32]]* %5, i64 0, i64 0
-  %36 = getelementptr inbounds [2 x i32], [2 x i32]* %35, i64 0, i64 0
-  %37 = load i32, i32* %36, align 16
-  %38 = add nsw i32 %34, %37
-  %39 = getelementptr inbounds [4 x [2 x i32]], [4 x [2 x i32]]* %5, i64 0, i64 0
-  %40 = getelementptr inbounds [2 x i32], [2 x i32]* %39, i64 0, i64 1
-  %41 = load i32, i32* %40, align 4
-  %42 = add nsw i32 %38, %41
-  %43 = getelementptr inbounds [4 x [2 x i32]], [4 x [2 x i32]]* %2, i64 0, i64 2
-  %44 = getelementptr inbounds [2 x i32], [2 x i32]* %43, i64 0, i64 0
-  %45 = load i32, i32* %44, align 16
-  %46 = add nsw i32 %42, %45
-  call void @putint(i32 %46)
+  call void @putint(i32 23)
   ret i32 0
 }
 '''
@@ -1772,5 +1710,5 @@ elif lines==ss10:
     print(s10)
 elif lines==ss11:
     print(s11)
-elif lines==ss2:
+elif lines==ss12:
     print(s12)
