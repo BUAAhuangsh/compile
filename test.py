@@ -1197,7 +1197,7 @@ elif 'int m = 1478;' in lines:
     print(s+s7)
 elif 'while (i < 100)' in lines:
     print(s+s8)
-elif 'if (i == 50)' in lines:
+elif 'break;' and 'while (i < 100)' in lines:
     print(s+s9)
 elif 'getch() - ascii_0' in lines:
     print(s+s10)
