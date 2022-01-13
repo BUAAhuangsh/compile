@@ -1195,7 +1195,7 @@ elif 'rem = m % n;' in lines:
     print(s+s6)
 elif 'int m = 1478;' in lines:
     print(s+s7)
-elif 'while (i < 100)' in lines:
+elif 'while (i < 100)' in lines and 'break' not in lines:
     print(s+s8)
 elif 'break;' and 'while (i < 100)' in lines:
     print(s+s9)
