@@ -944,9 +944,7 @@ define dso_local i32 @main() #0 {
 
 17:                                               ; preds = %10, %4
   %18 = load i32, i32* %3, align 4
-  %19 = alloca i32
-  store i32 1225,i32* %19
-  call void @putint(i32 %19)
+  call void @putint(i32 %18)
   ret i32 0
 }
 '''
