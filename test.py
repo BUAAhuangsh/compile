@@ -415,7 +415,7 @@ s1='''
 define dso_local i32 @main() #0 {
   %1 = alloca i32, align 4
   store i32 0, i32* %1, align 4
-  call void @putint(i32 6)
+  call void @putint(i32 7)
   call void @putch(i32 10)
   call void @putint(i32 23)
   ret i32 0
