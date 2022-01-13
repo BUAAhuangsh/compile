@@ -407,6 +407,8 @@ declare i32 @getint()
 declare void @putint(i32)
 declare i32 @getch()
 declare void @putch(i32)
+declare i32 @getarray(i32*)
+declare void @putarray(i32, i32*)
 '''
 lines=[]
 for line in sys.stdin:
